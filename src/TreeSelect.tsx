@@ -5,12 +5,34 @@ import TreeDrag from "./TreeDrag";
 import ItemAddMore from "./eachItemAddMore";
 
 import { FolderOutlined, FolderOpenOutlined } from "@ant-design/icons";
+import { useState } from "react";
 
 const { Link } = Typography;
 
 const { TreeNode } = TreeSelect;
 
-const TreeSelectCustome = ({ data }: { data: OneFolder[] }) => {
+const TreeSelectCustome = () => {
+  const [data, setData] = useState<OneFolder[]>([
+    { name: "Folder 1", visible: "all", id: "123" },
+    {
+      name: "Folder 2",
+      visible: "all",
+      id: "456",
+      children: [
+        {
+          name: "Folder 3",
+          visible: "all",
+          children: [{ name: "Folder 4", visible: "all", id: "456-1-1" }],
+          id: "456-1",
+        },
+      ],
+    },
+  ]);
+
+  const handeAddMore = (folder: OneFolder) => {
+    setData((preState) => [folder, ...preState]);
+  };
+
   return (
     <div>
       <TreeSelect
@@ -20,7 +42,7 @@ const TreeSelectCustome = ({ data }: { data: OneFolder[] }) => {
         dropdownRender={() => {
           return (
             <div>
-              <AddMore />
+              <AddMore addMoreFolder={handeAddMore} />
 
               <TreeDrag data={data} />
               <Divider style={{ margin: "4px 0" }} />

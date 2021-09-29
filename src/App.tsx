@@ -14,23 +14,6 @@ export type OneFolder = {
 
 const { Title } = Typography;
 function App() {
-  const [data, setData] = useState<OneFolder[]>([
-    { name: "Folder 1", visible: "all", id: "123" },
-    {
-      name: "Folder 2",
-      visible: "all",
-      id: "456",
-      children: [
-        {
-          name: "Folder 3",
-          visible: "all",
-          children: [{ name: "Folder 4", visible: "all", id: "456-1-1" }],
-          id: "456-1",
-        },
-      ],
-    },
-  ]);
-
   return (
     <Row justify="center">
       <Col xs={22} sm={18} md={14} lg={10} xl={8}>
@@ -38,7 +21,7 @@ function App() {
           <Title level={3}>Copy Data to Folder</Title>
         </Row>
 
-        <TreeSelectCustome data={data} />
+        <TreeSelectCustome />
 
         {/* <TreeDrag /> */}
         <Row justify="end">

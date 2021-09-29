@@ -6,18 +6,19 @@ import { OneFolder } from "./App";
 
 const { Link } = Typography;
 
-const AddMore = () => {
-  const [listItemsAddMore, setListItemsAddMore] = useState<OneFolder[]>([]);
+const AddMore = ({
+  addMoreFolder,
+}: {
+  addMoreFolder: (folder: OneFolder) => void;
+}) => {
+  const [listItemsAddMore, setListItemsAddMore] = useState<string[]>([]);
 
   const handleClickAddMore = () => {
-    setListItemsAddMore((preState) => [
-      ...preState,
-      {
-        id: Date().valueOf() + "",
-        name: "",
-        visible: "all",
-      },
-    ]);
+    setListItemsAddMore((preState) => [...preState, new Date().getTime() + ""]);
+  };
+
+  const handleRemoveOneFolder = (id: string) => () => {
+    setListItemsAddMore((preState) => preState.filter((item) => item !== id));
   };
 
   return (
@@ -43,10 +44,15 @@ const AddMore = () => {
         </Col>
       </Row>
 
-      <Row style={{ padding: "8px 24px 0 24px" }}>
+      <Row style={{ padding: "" }}>
         <Col span="16" style={{ paddingRight: 16 }}>
           {listItemsAddMore.map((item) => (
-            <ItemAddMore data={item} key={item.id} />
+            <ItemAddMore
+              key={item}
+              handleRemove={handleRemoveOneFolder(item)}
+              addMoreFolder={addMoreFolder}
+              id={item}
+            />
           ))}
         </Col>
       </Row>
