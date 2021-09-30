@@ -1,16 +1,10 @@
 import { DeleteFilled, FolderOutlined, SaveFilled } from "@ant-design/icons";
 import { Divider, Input, Row, Select } from "antd";
 import { ChangeEventHandler, useState } from "react";
-import { OneFolder } from "./App";
+import { OneFolderType } from "./data";
+import { names } from "./data";
 
 const { Option } = Select;
-
-const names = [
-  { id: "1", name: "name1" },
-  { id: "2", name: "name2" },
-  { id: "3", name: "name3" },
-  { id: "4", name: "name4" },
-];
 
 const ItemAddMore = ({
   handleRemove,
@@ -18,7 +12,7 @@ const ItemAddMore = ({
   id,
 }: {
   handleRemove: () => void;
-  addMoreFolder: (folder: OneFolder) => void;
+  addMoreFolder: (folder: OneFolderType) => void;
   id: string;
 }) => {
   const [name, setName] = useState("");
@@ -40,7 +34,7 @@ const ItemAddMore = ({
 
   const handleAddMore = () => {
     addMoreFolder({ id, name, visible, specificUser });
-    handleRemove()
+    handleRemove();
   };
 
   return (

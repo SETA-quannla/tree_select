@@ -1,35 +1,20 @@
 import { Divider, TreeSelect, Typography, Tree } from "antd";
 import AddMore from "./AddMore";
-import { OneFolder } from "./App";
+import { OneFolderType } from "./data";
 import TreeDrag from "./TreeDrag";
 import ItemAddMore from "./eachItemAddMore";
 
 import { FolderOutlined, FolderOpenOutlined } from "@ant-design/icons";
 import { useState } from "react";
+import { folderDataTree } from "./data";
 
 const { Link } = Typography;
 
 const { TreeNode } = TreeSelect;
 
 const TreeSelectCustome = () => {
-  const [data, setData] = useState<OneFolder[]>([
-    { name: "Folder 1", visible: "all", id: "123" },
-    {
-      name: "Folder 2",
-      visible: "all",
-      id: "456",
-      children: [
-        {
-          name: "Folder 3",
-          visible: "all",
-          children: [{ name: "Folder 4", visible: "all", id: "456-1-1" }],
-          id: "456-1",
-        },
-      ],
-    },
-  ]);
-
-  const handeAddMore = (folder: OneFolder) => {
+  const [data, setData] = useState<OneFolderType[]>(folderDataTree);
+  const handeAddMore = (folder: OneFolderType) => {
     setData((preState) => [folder, ...preState]);
   };
 
@@ -59,28 +44,3 @@ const TreeSelectCustome = () => {
 };
 
 export default TreeSelectCustome;
-
-// const renderTree = (data: OneFolder[]) => {
-//   return data.map((item) => {
-//     return (
-//       <TreeNode
-//         key={item.name}
-//         value={item.name}
-//         title={
-//           <div style={{ display: "inline-block" }}>
-//             <div>{item.name}</div>
-//             <div>{item.visible}</div>
-//           </div>
-//         }
-//         icon={(props: { expanded: boolean }) => {
-//           console.log("selected", props);
-
-//           return props.expanded ? <FolderOpenOutlined /> : <FolderOutlined />;
-//         }}
-//         // icon={FolderOpenOutlined}
-//       >
-//         {item.children && renderTree(item.children)}
-//       </TreeNode>
-//     );
-//   });
-// };

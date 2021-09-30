@@ -1,16 +1,7 @@
 import { Button, Col, Row, Typography } from "antd";
 import "antd/dist/antd.css";
-import { useState } from "react";
 import "./App.css";
 import TreeSelectCustome from "./TreeSelect";
-
-export type OneFolder = {
-  name: string;
-  visible: "all" | "only" | "specific";
-  specificUser?: string[];
-  children?: OneFolder[];
-  id: string;
-};
 
 const { Title } = Typography;
 function App() {

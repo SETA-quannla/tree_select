@@ -3,16 +3,16 @@ import { Tree, Row, Input } from "antd";
 import { FolderOutlined, FolderOpenOutlined } from "@ant-design/icons";
 import Select from "rc-select";
 import ItemAddMore from "./eachItemAddMore";
-import { OneFolder } from "./App";
+import { OneFolderType } from "./data";
 
 const { Option } = Select;
 
-const chageDataToDataRender: (data: OneFolder[]) => {
+const chageDataToDataRender: (data: OneFolderType[]) => {
   title: any;
   key: string;
   icon: any;
   children: any;
-}[] = (data: OneFolder[]) => {
+}[] = (data: OneFolderType[]) => {
   return data.map((item) => {
     return {
       title: (
@@ -30,7 +30,7 @@ const chageDataToDataRender: (data: OneFolder[]) => {
   });
 };
 
-const TreeDrag = ({ data }: { data: OneFolder[] }) => {
+const TreeDrag = ({ data }: { data: OneFolderType[] }) => {
   const [state, setState] = useState([
     {
       title: (

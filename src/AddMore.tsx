@@ -2,14 +2,14 @@ import { Col, Divider, Input, Row, Typography } from "antd";
 import { useState } from "react";
 import ItemAddMore from "./eachItemAddMore";
 
-import { OneFolder } from "./App";
+import { OneFolderType } from "./data";
 
 const { Link } = Typography;
 
 const AddMore = ({
   addMoreFolder,
 }: {
-  addMoreFolder: (folder: OneFolder) => void;
+  addMoreFolder: (folder: OneFolderType) => void;
 }) => {
   const [listItemsAddMore, setListItemsAddMore] = useState<string[]>([]);
 
